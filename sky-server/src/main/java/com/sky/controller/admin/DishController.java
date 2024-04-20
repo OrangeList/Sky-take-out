@@ -87,6 +87,7 @@ public class DishController {
     public Result update(@RequestBody DishDTO dishDTO) {
         log.info("修改菜品" + dishDTO);
         dishService.updateWithFlavor(dishDTO);
+
         return Result.success();
     }
 }
