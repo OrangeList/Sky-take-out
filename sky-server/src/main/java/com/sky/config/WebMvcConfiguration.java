@@ -44,10 +44,11 @@ public class WebMvcConfiguration extends WebMvcConfigurationSupport {
 
     /**
      * 通过knife4j生成接口文档
+     *
      * @return
      */
     @Bean
-    public Docket docket() {
+    public Docket docketAdmin() {
         log.info("开始生成接口文档...");
         ApiInfo apiInfo = new ApiInfoBuilder()
                 .title("苍穹外卖项目接口文档")
@@ -55,9 +56,28 @@ public class WebMvcConfiguration extends WebMvcConfigurationSupport {
                 .description("苍穹外卖项目接口文档")
                 .build();
         Docket docket = new Docket(DocumentationType.SWAGGER_2)
+                .groupName("管理端接口")
                 .apiInfo(apiInfo)
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("com.sky.controller"))
+                .apis(RequestHandlerSelectors.basePackage("com.sky.controller.admin"))
+                .paths(PathSelectors.any())
+                .build();
+        return docket;
+    }
+
+    @Bean
+    public Docket docketUser() {
+        log.info("开始生成接口文档...");
+        ApiInfo apiInfo = new ApiInfoBuilder()
+                .title("苍穹外卖项目接口文档")
+                .version("2.0")
+                .description("苍穹外卖项目接口文档")
+                .build();
+        Docket docket = new Docket(DocumentationType.SWAGGER_2)
+                .groupName("用户端接口")
+                .apiInfo(apiInfo)
+                .select()
+                .apis(RequestHandlerSelectors.basePackage("com.sky.controller.user"))
                 .paths(PathSelectors.any())
                 .build();
         return docket;
@@ -65,6 +85,7 @@ public class WebMvcConfiguration extends WebMvcConfigurationSupport {
 
     /**
      * 设置静态资源映射
+     *
      * @param registry
      */
     protected void addResourceHandlers(ResourceHandlerRegistry registry) {
@@ -75,6 +96,7 @@ public class WebMvcConfiguration extends WebMvcConfigurationSupport {
 
     /**
      * 扩展Spring MVC框架的消息转换器
+     *
      * @param converters
      */
     @Override
@@ -84,6 +106,6 @@ public class WebMvcConfiguration extends WebMvcConfigurationSupport {
         //需要将消息转换器设置一个对象转换器，对象转换器可以将Java对象序列化为Json数据
         converter.setObjectMapper(new JacksonObjectMapper());
         //将自己的消息转换器加入到容器中
-        converters.add(0,converter);
+        converters.add(0, converter);
     }
 }
