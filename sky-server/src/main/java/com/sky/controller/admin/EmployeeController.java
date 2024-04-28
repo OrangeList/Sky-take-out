@@ -40,7 +40,7 @@ public class EmployeeController {
      * @param employeeLoginDTO
      * @return
      */
-    @PostMapping("/loPogin")
+    @PostMapping("/login")
     @ApiOperation("员工登录")
     public Result<EmployeeLoginVO> login(@RequestBody EmployeeLoginDTO employeeLoginDTO) {
         log.info("员工登录：{}", employeeLoginDTO);
