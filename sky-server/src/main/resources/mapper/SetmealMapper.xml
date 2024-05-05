@@ -11,6 +11,7 @@
     </insert>
 
     <update id="update">
+        update setmeal
         <set>
             <if test="categoryId!=null">
                 category_id = #{categoryId},
@@ -36,8 +37,8 @@
             <if test="updateUser!=null">
                 update_user = #{updateUser},
             </if>
-            where id = #{id}
         </set>
+        where id = #{id}
     </update>
 
     <select id="pageQuery" resultType="com.sky.vo.SetmealVO">
