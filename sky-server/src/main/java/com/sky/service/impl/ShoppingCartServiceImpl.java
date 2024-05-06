@@ -59,7 +59,7 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
                 shoppingCart.setName(dish.getName());
                 shoppingCart.setImage(dish.getImage());
                 shoppingCart.setAmount(dish.getPrice());
-            }else{
+            } else {
                 //新增的是套餐
                 Long setmealId = shoppingCart.getSetmealId();
                 Setmeal setmeal = setmealMapper.getById(setmealId);
@@ -72,5 +72,15 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
             //如果不存在，则插入数据
             shoppingCartMapper.insert(shoppingCart);
         }
+    }
+
+    @Override
+    public List<ShoppingCart> list() {
+        Long currentId = BaseContext.getCurrentId();
+        ShoppingCart shoppingCart = ShoppingCart.builder()
+                .id(currentId)
+                .build();
+        List<ShoppingCart> list = shoppingCartMapper.list(shoppingCart);
+        return list;
     }
 }
