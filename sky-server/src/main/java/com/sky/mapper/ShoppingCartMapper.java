@@ -12,6 +12,15 @@ import java.util.List;
 @Mapper
 public interface ShoppingCartMapper {
 
+
+    /**
+     * 根据id删除购物车数据
+     * @param id
+     */
+    @Delete("delete from shopping_cart where id = #{id}")
+    void deleteById(Long id);
+
+
     /**
      * 根据Id删除购物车
      *
