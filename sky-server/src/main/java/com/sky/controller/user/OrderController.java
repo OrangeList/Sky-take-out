@@ -23,13 +23,14 @@ public class OrderController {
 
     /**
      * 用户下单
+     *
      * @param ordersSubmitDTO
      * @return
      */
     @PostMapping("/submit")
     @ApiOperation("用户下单")
-    public Result<OrderSubmitVO> submit(@RequestBody OrdersSubmitDTO ordersSubmitDTO){
-        log.info("用户下单"+ordersSubmitDTO);
+    public Result<OrderSubmitVO> submit(@RequestBody OrdersSubmitDTO ordersSubmitDTO) {
+        log.info("用户下单" + ordersSubmitDTO);
         OrderSubmitVO orderSubmitVO = orderService.submitOrder(ordersSubmitDTO);
         return Result.success(orderSubmitVO);
     }
@@ -46,6 +47,9 @@ public class OrderController {
         log.info("订单支付：{}", ordersPaymentDTO);
         OrderPaymentVO orderPaymentVO = orderService.payment(ordersPaymentDTO);
         log.info("生成预支付交易单：{}", orderPaymentVO);
+        //模拟交易成功，修改数据库订单状态
+        orderService.paySuccess(ordersPaymentDTO.getOrderNumber());
+        log.info("模拟交易成功：{}", ordersPaymentDTO.getOrderNumber());
         return Result.success(orderPaymentVO);
     }
 }
