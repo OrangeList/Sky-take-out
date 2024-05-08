@@ -89,6 +89,7 @@ public class OrderServiceImpl implements OrderService {
         //手机号
         orders.setPhone(addressBook.getPhone());
         orders.setConsignee(addressBook.getConsignee());
+//        orders.setAddress(addressBook.get);
         orders.setUserId(currentId);
 
         orderMapper.insert(orders);
@@ -169,13 +170,14 @@ public class OrderServiceImpl implements OrderService {
 
         orderMapper.update(orders);
 
-//        Map map = new HashMap<>();
-//        map.put("type", 1);
-//        map.put("orderId", ordersDB.getId());
-//        map.put("content", "订单号：" + outTradeNo);
-//
-//        String json = JSON.toJSONString(map);
-//        webSocketServer.sendToAllClient(json);
+        //通过WebSocket向客户端浏览器推送消息
+        Map map = new HashMap<>();
+        map.put("type", 1);//1表示来单提醒
+        map.put("orderId", ordersDB.getId());
+        map.put("content", "订单号：" + outTradeNo);
+
+        String json = JSON.toJSONString(map);
+        webSocketServer.sendToAllClient(json);
 
     }
 }

@@ -58,5 +58,5 @@ sky:
 #    private-key-file-path:
 #    api-v3-key:
 #    we-chat-pay-cert-file-path:
-#    notify-url:
+    notify-url: ${sky.wechat.notify-url}
 #    refund-notify-url:
