@@ -54,4 +54,11 @@ public interface ShoppingCartMapper {
             " dish_flavor, number, amount, create_time) values (#{name},#{image},#{userId}," +
             "#{dishId},#{setmealId},#{dishFlavor},#{number},#{amount},#{createTime})")
     void insert(ShoppingCart shoppingCart);
+
+    /**
+     * 批量插入购物车数据
+     *
+     * @param shoppingCartList
+     */
+    void insertBatch(List<ShoppingCart> shoppingCartList);
 }
