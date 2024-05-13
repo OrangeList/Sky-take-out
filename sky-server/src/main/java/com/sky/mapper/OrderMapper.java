@@ -64,5 +64,17 @@ public interface OrderMapper {
     Integer countStatus(Integer status);
 
 
+    /**
+     * 根据动态条件查询营业额数据
+     * @param map
+     * @return
+     */
     Double sumByMap(Map map);
+
+    /**
+     * 根据动态条件查询订单数量
+     * @param map
+     * @return
+     */
+    Integer countByMap(Map map);
 }
