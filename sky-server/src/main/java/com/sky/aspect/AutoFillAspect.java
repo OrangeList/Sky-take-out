@@ -23,16 +23,24 @@ import java.time.LocalDateTime;
 @Component
 @Slf4j
 public class AutoFillAspect {
+
     /**
      * 切入点
      * 匹配com.sky.mapper里面所有的方法且加入了AutoFill注解
+     * *：表示返回任意类型。
+     * com.sky.mapper.*：表示 com.sky.mapper 包下的所有类。
+     * *.*(..)：表示类中的所有方法。第一个 * 表示方法名，
+     * 第二个 * 表示任意参数，(..) 表示方法可以接受任意数量和类型的参数。
+     *
+     * @annotation(com.sky.annotation.AutoFill) 这个部分用于进一步限定切入点，要求匹配的方法必须被 com.sky.annotation.AutoFill 注解标注。
+     * 也就是说，只有那些既符合前面的 execution 表达式，又被 AutoFill 注解标注的方法，才会被这个切入点匹配到。
      */
     @Pointcut("execution(* com.sky.mapper.*.*(..)) && @annotation(com.sky.annotation.AutoFill))")
     public void autoFillPointCount() {
     }
 
     /**
-     * 前置通知，在通知中进行公共字段的赋值
+     * 前置通知Advice，在通知中进行公共字段的赋值
      */
     @Before("autoFillPointCount()")
     public void autoFill(JoinPoint joinPoint) {

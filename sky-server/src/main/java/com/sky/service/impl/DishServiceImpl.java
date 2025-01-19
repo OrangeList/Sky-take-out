@@ -48,7 +48,7 @@ public class DishServiceImpl implements DishService {
 
         Dish dish = new Dish();
         BeanUtils.copyProperties(dishDTO, dish);
-        //向菜品表插入一条数据
+        //向菜品表插入一条数据,插入之后可以获得DishId
         dishMapper.insert(dish);
 
         Long dishId = dish.getId();
@@ -99,6 +99,7 @@ public class DishServiceImpl implements DishService {
             throw new DeletionNotAllowedException(MessageConstant.DISH_BE_RELATED_BY_SETMEAL);
 
         }
+
 //        //删除菜品表中的菜品数据
 //        for (Long id : ids) {
 //            dishMapper.deleteById(id);

@@ -77,6 +77,7 @@ public class OrderServiceImpl implements OrderService {
             throw new AddressBookBusinessException(MessageConstant.ADDRESS_BOOK_IS_NULL);
         }
 
+        //购物车为空
         Long currentId = BaseContext.getCurrentId();
         ShoppingCart shoppingCart = ShoppingCart.builder()
                 .id(currentId)

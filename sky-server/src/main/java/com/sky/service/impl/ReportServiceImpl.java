@@ -67,9 +67,11 @@ public class ReportServiceImpl implements ReportService {
         List<Double> turnoverList = new ArrayList<>();
 
         for (LocalDate date : dateList) {
+
             //查询date日期对应的营业额数据，也就是当前为“已完成”的订单金额合计
             LocalDateTime beginTime = LocalDateTime.of(date, LocalTime.MIN);
             LocalDateTime endTime = LocalDateTime.of(date, LocalTime.MAX);
+
             //select sum(amount) from order where order_time > ? and order_time < ? and status = 5
             Map map = new HashMap<>();
             map.put("begin", beginTime);
@@ -136,6 +138,7 @@ public class ReportServiceImpl implements ReportService {
 
         String join1 = StringUtils.join(newUserList, ",");
         String join2 = StringUtils.join(totalUserList, ",");
+
         return UserReportVO.builder()
                 .dateList(join)
                 .newUserList(join1)

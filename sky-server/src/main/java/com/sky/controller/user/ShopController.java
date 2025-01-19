@@ -1,5 +1,6 @@
 package com.sky.controller.user;
 
+import com.alibaba.fastjson.JSONObject;
 import com.sky.result.Result;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -34,4 +35,5 @@ public class ShopController {
         log.info("获取到店铺的营业状态为：" + shopStatus);
         return Result.success(shopStatus);
     }
+
 }

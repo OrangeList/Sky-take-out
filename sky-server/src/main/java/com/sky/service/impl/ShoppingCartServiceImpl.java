@@ -46,7 +46,7 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
         List<ShoppingCart> list = shoppingCartMapper.list(shoppingCart);
 
         //如果已存在，只需要在数据库中+1
-        if (list != null && list.size() > 0) {
+        if (list != null && list.size() > 0) {;
             ShoppingCart cart = list.get(0);
             cart.setNumber(cart.getNumber() + 1);
             shoppingCartMapper.updateNumById(cart);

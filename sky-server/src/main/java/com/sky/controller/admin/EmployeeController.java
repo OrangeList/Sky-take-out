@@ -108,6 +108,9 @@ public class EmployeeController {
      */
     @PostMapping("/status/{status}")
     @ApiOperation("启用/禁用员工账号")
+    // status为路径参数 需要PathVariable注解
+    // id为请求参数 不需要注解 请求参数是通过 ? 符号附加在 URL 后面的键值对
+    // 例如：http://localhost/api/employee/status/0?id=2
     public Result startOrStop(@PathVariable Integer status,Long id){
         employeeService.startOrStop(status,id);
 

@@ -11,6 +11,7 @@
             (#{flavor.dishId},#{flavor.name},#{flavor.value})
         </foreach>
     </insert>
+
     <delete id="deleteByDishIds">
         delete
         from dish_flavor
